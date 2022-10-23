@@ -1,0 +1,114 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>PI-21</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='public/js/Server.js'></script>
+    <script src='public/js/main.js'></script>
+</head>
+<body>
+    <div>
+        <input id="login">
+        <input id="password">
+    </div>
+    <button id="sendLogin">Авторизоваться</button>
+    <button id="sendConvert">Сконвертировать</button>
+</body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+
+
+
+    <div class="container text-center visible" id="auth">
+        <div class="row">
+            <div class="col-12">
+                <h1>App</h1>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-3">
+                <div class="mb-3">
+                    <label for="login" class="form-label">Login</label>
+                    <input type="text" class="form-control" id="login">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <button type="button" class="btn btn-primary" id="sendLogin">Авторизоваться</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="container text-center invisible" id="convert">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="input-group mb-3 container text-center my-5">
+
+                    <!-- ввод числа -->
+                    <input type="text" class="form-control-lg " placeholder="Enter your number" id="number"
+                        autocomplete="off" aria-describedby="button-addon2">
+
+                    <!-- выбор системы счисления числа -->
+                    <select class="form-select" aria-label="Default select example" id="fromSystem">
+                        <option disabled selected hidden value="0">Choose system of YOUR number</option>
+                        <option value="decimal">decimal</option>
+                        <option value="roman">roman</option>
+                        <option value="binary">binary</option>
+                        <option value="octal">octal</option>
+                        <option value="hex">hex</option>
+                    </select>
+
+                    <!-- выбор в какую систему переводить -->
+                    <select class="form-select" aria-label="Default select example" id="toSystem">
+                        <option disabled selected hidden value="0">Choose system you WANT to get</option>
+                        <option value="decimal">decimal</option>
+                        <option value="roman">roman</option>
+                        <option value="binary">binary</option>
+                        <option value="octal">octal</option>
+                        <option value="hex">hex</option>
+                    </select>
+
+                    <!-- поле вывода -->
+                    <input type="text" class="form-control-lg " placeholder="Result" id="answer" autocomplete="off"
+                        aria-describedby="button-addon2">
+
+                    <!-- кнопка перевода -->
+                    <button class="btn btn-outline-secondary" id="sendConvert">Convert</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src='public/js/Server.js'></script>
+    <script src='public/js/main.js'></script>
+    <script src="public/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
