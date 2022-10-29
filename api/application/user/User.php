@@ -5,16 +5,25 @@ class User {
     }
 
     function login($login, $password) {
-        if ($login === 'mosin' && $password === 'qwerty') {
+        $user = $this->db->getUser($login);
+        if ($user && $password === $user->password) {
             $token = md5(rand());
+            $this->db->updateToken($user->id, $token);
             return array(
-                'name' => 'Sasha Mosin',
+                'name' => $user->name,
                 'token' => $token
             );
         }
     }
 
     function getUser($token) {
-        return !!$token;
+        return !!$this->db->getUserByToken($token);
+    }
+
+    function logout($token) {
+        $user = $this->db->getUserByToken($token);
+        if ($user) {
+            return $this->db->updateToken($user->id, '');
+        }
     }
 }

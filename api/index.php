@@ -1,5 +1,6 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: text/html; charset=utf-8');
 error_reporting(-1);
 
 require('application/Application.php');
@@ -11,6 +12,9 @@ function router($params) {
         switch ($method) {
             case 'login': return $app->login($params);
             case 'convert': return $app->convert($params);
+            case 'logout': return $app->logout($params);
+            case 'addUser': return $app->addUser($params);
+            
             //...
         }
     }

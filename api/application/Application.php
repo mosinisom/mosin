@@ -16,6 +16,12 @@ class Application {
         }
     }
 
+    function logout($params) {
+        if ($params['token']) { 
+            return $this->user->logout($params['token']);
+        }
+    }
+
     function convert($params) {
         $user = $this->user->getUser($params['token']);
         if ($user && $params['value'] && $params['systemFrom'] && $params['systemTo']) {
@@ -23,6 +29,16 @@ class Application {
                 $params['value'], 
                 $params['systemFrom'], 
                 $params['systemTo']
+            );
+        }
+    }
+
+    function AddUser($params) {
+        if ($params['login'] && $params['password'] && $params['name']) {
+            return $this->user->addUser(
+                $params['login'],
+                $params['password'], 
+                $params['name']
             );
         }
     }
