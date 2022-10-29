@@ -8,11 +8,11 @@ window.onload = function () {
         const data = await server.login(login, password);
 
         if (!!data) {
-            document.getElementById('auth').classList.remove('visible');
-            document.getElementById('auth').classList.add('invisible');
+            document.getElementById('auth').classList.remove('d-flex');
+            document.getElementById('auth').classList.add('d-none');
 
-            document.getElementById('convert').classList.remove('invisible');
-            document.getElementById('convert').classList.add('visible');
+            document.getElementById('convert').classList.remove('d-none');
+            document.getElementById('convert').classList.add('d-flex');
         }
         console.log(data);
     }
