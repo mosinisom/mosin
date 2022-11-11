@@ -1,22 +1,31 @@
 window.onload = function () {
-
     const server = new Server;
+    const auth = document.getElementById('auth');
+    const nav = document.getElementById("nav");
+    const converter = document.getElementById('converter');
 
+    // авторизация --------------------------------------------------------------------------------------------
     async function sendLoginHandler() {
         const login = document.getElementById('login').value;
         const password = document.getElementById('password').value;
         const data = await server.login(login, password);
 
         if (!!data) {
-            document.getElementById('auth').classList.remove('d-flex');
-            document.getElementById('auth').classList.add('d-none');
+            auth.classList.remove('d-flex');
+            auth.classList.add('d-none');
 
-            document.getElementById('convert').classList.remove('d-none');
-            document.getElementById('convert').classList.add('d-flex');
+            nav.classList.remove('d-none');
+
+            console.log(converter);
+
+            converter.classList.remove('d-none');
+            // convert.classList.add('d-flex');
         }
         console.log(data);
     }
+    document.getElementById('sendLogin').addEventListener('click', sendLoginHandler);
 
+    // конвертация чисел --------------------------------------------------------------------------------------------
     async function sendConvertHandler() {
         const number = document.getElementById('number').value;
 
@@ -30,9 +39,25 @@ window.onload = function () {
         const answer = await server.convert(number, fromSystem, toSystem);
 
         document.getElementById('answer').value = answer;
-        
-    }
 
-    document.getElementById('sendLogin').addEventListener('click', sendLoginHandler);
+    }
     document.getElementById('sendConvert').addEventListener('click', sendConvertHandler);
+
+    // регистрация --------------------------------------------------------------------------------------------
+    async function sendRegisterHandler() {
+        const login = document.getElementById('loginREG').value;
+        const name = document.getElementById('nicknameREG').value;
+        const password = document.getElementById('password2REG').value;
+
+        const data = await server.register(login, password, name);
+
+        console.log('до сюда дошло');
+        console.log(data);
+    }
+    document.getElementById('makeAccount').addEventListener('click', sendRegisterHandler);
+
+
+
+
+
 };

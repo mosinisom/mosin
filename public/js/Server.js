@@ -13,7 +13,8 @@ class Server {
 
     async login(login, password) {
         if (login && password) {
-            const data = await this.send({ method: 'login', login, password });
+            const data = await this.send({ 
+            method: 'login', login, password });
             this.token = data.token;
             delete data.token;
             return data;
@@ -33,4 +34,17 @@ class Server {
         }
         return null;
     }
+
+    async register(login, password, name) {
+        if (login && name && password) {
+            return await this.send({ 
+                method: 'register', 
+                login, 
+                password, 
+                name 
+            });
+        }
+        return null;
+    }
+
 }

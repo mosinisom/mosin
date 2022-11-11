@@ -52,8 +52,13 @@ class DB {
         return $this->getArray($query);
     }
 
-    public function addUser($login, $password, $name) {
+    public function register($login, $password, $name) {
+        // $user = $this->getUser($login);
+        // if ($user) {
+        //     return false;
+        // }
         $query = 'INSERT INTO users (login, password, name, token) VALUES ("' . $login . '", "' . $password . '", "' . $name . '", "")';
+
         $this->db->query($query);
         return true;
     }
@@ -61,3 +66,7 @@ class DB {
 
 
 }
+
+
+
+

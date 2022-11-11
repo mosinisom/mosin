@@ -13,7 +13,7 @@ function router($params) {
             case 'login': return $app->login($params);
             case 'convert': return $app->convert($params);
             case 'logout': return $app->logout($params);
-            case 'addUser': return $app->addUser($params);
+            case 'register': return $app->register($params);
             
             //...
         }

@@ -33,9 +33,9 @@ class Application {
         }
     }
 
-    function AddUser($params) {
+    function register($params) {
         if ($params['login'] && $params['password'] && $params['name']) {
-            return $this->user->addUser(
+            return $this->user->register(
                 $params['login'],
                 $params['password'], 
                 $params['name']

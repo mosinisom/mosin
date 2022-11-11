@@ -4,14 +4,59 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>App</title>
+    <title>MosinApp</title>
+    <link rel="stylesheet" href="public/css/Black-Navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 
 <body>
+    <!-- НАВИГАЦИЯ -->
+    <div class="d-none" id="nav">
+        <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button"
+            style="background: rgb(34, 34, 34);border-radius: 20;border-top-left-radius: 20;border-top-right-radius: 20;border-bottom-right-radius: 20;border-bottom-left-radius: 20;border-style: none;padding-top: 0;padding-bottom: 10px;">
+            <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler"
+                    data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+                <div><a class="navbar-brand" href="#"><span>MosinApp</span> </a></div>
+                <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255);">
+                    <ul class="navbar-nav nav-right">
+                        <li class="nav-item"><a class="nav-link active" href="index.html"
+                                style="color: rgba(224,217,217,0.9);">Мой профиль</a></li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
+                                data-bs-toggle="dropdown" href="#" style="color: rgba(224,217,217,0.9);">Игры </a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="services.html">Танчики</a><a
+                                    class="dropdown-item" href="#">ДИСКОквадраты</a><a class="dropdown-item"
+                                    href="#">Бегающий круг</a></div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="about.html"
+                                style="color: rgba(224,217,217,0.9);">Конвертер</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq.html"
+                                style="color: rgba(224,217,217,0.9);">Рекорды</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html"
+                                style="color: rgba(224,217,217,0.9);">Контакты </a></li>
+                    </ul>
+                    <p class="ms-auto navbar-text actions">
+                        <!-- <a class="login" href="login.html"
+                            style="color: rgba(224,217,217,0.9);"
+                            >Войти
+                        </a>  -->
+                        <a class="btn btn-light action-button" role="button" href="signup.html"
+                            style="color: rgba(0,0,0,0.9);background: var(--bs-gray-200);border-radius: 10px;border-style: solid;border-color: rgba(0,0,0,0.9);font-size: 16px;padding: 5px 8px;">Новый
+                            профиль
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- КОНЕЦ НАВИГАЦИИ -->
+
+
+
     <!-- АВТОРИЗАЦИЯ -->
-    <div class="container" id="auth"
+    <div class="container d-none" id="auth"
         style="position:absolute; left:0; right:0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-9 col-xl-9 col-xxl-7">
@@ -21,24 +66,25 @@
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                        <h4 class="text-dark mb-4">Добро пожаловать!</h4>
                                     </div>
                                     <div class="user">
                                         <div class="mb-3"><input class="form-control form-control-user" type="email"
-                                                id="login" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address" name="email" required=""></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="password"
-                                                placeholder="Password" name="password" required=""></div>
+                                                id="login" aria-describedby="emailHelp" placeholder="Введите Ваш e-mail"
+                                                name="email" required=""></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password"
+                                                id="password" placeholder="Пароль" name="password" required=""></div>
                                         <div class="row mb-3">
                                             <p id="errorMsg" class="text-danger" style="display:none;">Paragraph</p>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" id="sendLogin"
-                                            >Login</button>
+                                        </div>
+                                        <button class="btn btn-primary d-block btn-user w-100"
+                                            id="sendLogin">Войти</button>
                                         <hr>
                                     </div>
-                                    <div class="text-center"><a class="small" href="forgot-password.html">Forgot
-                                            Password?</a></div>
-                                    <div class="text-center"><a class="small" href="register.html">Create an
-                                            Account!</a></div>
+                                    <!-- <div class="text-center"><a class="small" href="forgot-password.html">Забыли
+                                            пароль?</a></div> -->
+                                    <div class="text-center"><a class="small" href="register.html">Создать аккаунт!</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -49,42 +95,96 @@
     </div>
     <!-- КОНЕЦ АВТОРИЗАЦИИ -->
 
+
+
+    <!-- РЕГИСТРАЦИЯ -->
+    <div class="container" id="registration"
+        style="position:absolute; left:0; right:0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-9 col-xl-9 col-xxl-7">
+                <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Зарегистрироваться!</h4>
+                                    </div>
+                                    <div class="user">
+
+                                        <div class="mb-3"><input class="form-control form-control-user" type="email"
+                                                id="nicknameREG" aria-describedby="emailHelp"
+                                                placeholder="Ваше имя" name="email" required=""></div>
+
+                                        <div class="mb-3"><input class="form-control form-control-user" type="email"
+                                                id="loginREG" aria-describedby="emailHelp"
+                                                placeholder="Ваш e-mail" name="email" required=""></div>
+
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password"
+                                                id="password1REG" placeholder="Пароль" name="password" required="">
+                                        </div>
+
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password"
+                                                id="password2REG" placeholder="Повторите пароль" name="password" required="">
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <p id="errorMsgREG" class="text-danger" style="display:none;">Paragraph</p>
+                                        </div>
+                                        <button class="btn btn-primary d-block btn-user w-100" id="makeAccount">Создать
+                                            аккаунт!</button>
+                                        <hr>
+                                    </div>
+                                    <div class="text-center"><a class="small" href="register.html">Уже есть профиль.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- КОНЕЦ РЕГИСТРАЦИИ -->
+
     <!-- КОНВЕРТЕР ЧИСЕЛ -->
-    <div class="container text-center d-none" id="convert">
-        <div class="row justify-content-md-center">
-            <div class="col-md-auto">
-                <div class="input-group mb-3 container text-center my-5">
+    <div class="d-none" id="converter">
+        <div class="container text-center" id="convert">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <div class="input-group mb-3 container text-center my-5">
 
-                    <!-- ввод числа -->
-                    <input type="text" class="form-control-lg " placeholder="Enter your num" id="number"
-                        autocomplete="off" aria-describedby="button-addon2">
+                        <!-- ввод числа -->
+                        <input type="text" class="form-control-lg " placeholder="Enter your num" id="number"
+                            autocomplete="off" aria-describedby="button-addon2">
 
-                    <!-- выбор системы счисления числа -->
-                    <select class="form-select" aria-label="Default select example" id="fromSystem">
-                        <option disabled selected hidden value="0">Choose system of YOUR number</option>
-                        <option value="decimal">decimal</option>
-                        <option value="roman">roman</option>
-                        <option value="binary">binary</option>
-                        <option value="octal">octal</option>
-                        <option value="hex">hex</option>
-                    </select>
+                        <!-- выбор системы счисления числа -->
+                        <select class="form-select" aria-label="Default select example" id="fromSystem">
+                            <option disabled selected hidden value="0">Choose system of YOUR number</option>
+                            <option value="decimal">decimal</option>
+                            <option value="roman">roman</option>
+                            <option value="binary">binary</option>
+                            <option value="octal">octal</option>
+                            <option value="hex">hex</option>
+                        </select>
 
-                    <!-- выбор в какую систему переводить -->
-                    <select class="form-select" aria-label="Default select example" id="toSystem">
-                        <option disabled selected hidden value="0">Choose system you WANT to get</option>
-                        <option value="decimal">decimal</option>
-                        <option value="roman">roman</option>
-                        <option value="binary">binary</option>
-                        <option value="octal">octal</option>
-                        <option value="hex">hex</option>
-                    </select>
+                        <!-- выбор в какую систему переводить -->
+                        <select class="form-select" aria-label="Default select example" id="toSystem">
+                            <option disabled selected hidden value="0">Choose system you WANT to get</option>
+                            <option value="decimal">decimal</option>
+                            <option value="roman">roman</option>
+                            <option value="binary">binary</option>
+                            <option value="octal">octal</option>
+                            <option value="hex">hex</option>
+                        </select>
 
-                    <!-- поле вывода -->
-                    <input type="text" class="form-control-lg " placeholder="Result" id="answer" autocomplete="off"
-                        aria-describedby="button-addon2">
+                        <!-- поле вывода -->
+                        <input type="text" class="form-control-lg " placeholder="Result" id="answer" autocomplete="off"
+                            aria-describedby="button-addon2">
 
-                    <!-- кнопка перевода -->
-                    <button class="btn btn-outline-secondary" id="sendConvert">Convert</button>
+                        <!-- кнопка перевода -->
+                        <button class="btn btn-outline-secondary" id="sendConvert">Convert</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -95,7 +195,6 @@
     <script src="public/js/authAndRegLogic.js"></script>
     <script src='public/js/Server.js'></script>
     <script src='public/js/main.js'></script>
-    <script src="public/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
