@@ -56,34 +56,40 @@
 
 
     <!-- АВТОРИЗАЦИЯ -->
-    <div class="container d-none" id="auth"
-        style="position:absolute; left:0; right:0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
-        <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-9 col-xl-9 col-xxl-7">
-                <div class="card shadow-lg o-hidden border-0 my-5">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h4 class="text-dark mb-4">Добро пожаловать!</h4>
-                                    </div>
-                                    <div class="user">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email"
-                                                id="login" aria-describedby="emailHelp" placeholder="Введите Ваш e-mail"
-                                                name="email" required=""></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password"
-                                                id="password" placeholder="Пароль" name="password" required=""></div>
-                                        <div class="row mb-3">
-                                            <p id="errorMsg" class="text-danger" style="display:none;">Paragraph</p>
+    <div class="d-none" id="auth">
+        <div class="container"
+            style="position:absolute; left:0; right:0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-9 col-xl-9 col-xxl-7">
+                    <div class="card shadow-lg o-hidden border-0 my-5">
+                        <div class="card-body p-0">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h4 class="text-dark mb-4">Добро пожаловать!</h4>
                                         </div>
-                                        <button class="btn btn-primary d-block btn-user w-100"
-                                            id="sendLogin">Войти</button>
-                                        <hr>
-                                    </div>
-                                    <!-- <div class="text-center"><a class="small" href="forgot-password.html">Забыли
+                                        <div class="user">
+                                            <div class="mb-3"><input class="form-control form-control-user" type="email"
+                                                    id="login" aria-describedby="emailHelp"
+                                                    placeholder="Ваш e-mail" name="email" required=""></div>
+                                            <div class="mb-3"><input class="form-control form-control-user"
+                                                    type="password" id="password" placeholder="Пароль" name="password"
+                                                    required=""></div>
+                                            <div class="row mb-3">
+                                                <p id="errorMsg" class="text-danger" style="display:none;">Paragraph</p>
+                                            </div>
+                                            <button class="btn btn-primary d-block btn-user w-100"
+                                                id="sendLogin">Войти</button>
+                                            <hr>
+                                        </div>
+                                        <!-- <div class="text-center"><a class="small" href="forgot-password.html">Забыли
                                             пароль?</a></div> -->
-                                    <div class="text-center"><a class="small" href="register.html">Создать аккаунт!</a>
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-link" id="btnToRegistration">Создать
+                                                аккаунт!</button>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -98,44 +104,53 @@
 
 
     <!-- РЕГИСТРАЦИЯ -->
-    <div class="container" id="registration"
-        style="position:absolute; left:0; right:0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
-        <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-9 col-xl-9 col-xxl-7">
-                <div class="card shadow-lg o-hidden border-0 my-5">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h4 class="text-dark mb-4">Зарегистрироваться!</h4>
-                                    </div>
-                                    <div class="user">
-
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email"
-                                                id="nicknameREG" aria-describedby="emailHelp"
-                                                placeholder="Ваше имя" name="email" required=""></div>
-
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email"
-                                                id="loginREG" aria-describedby="emailHelp"
-                                                placeholder="Ваш e-mail" name="email" required=""></div>
-
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password"
-                                                id="password1REG" placeholder="Пароль" name="password" required="">
+    <div class="" id="registration">
+        <div class="container"
+            style="position:absolute; left:0; right:0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-9 col-xl-9 col-xxl-7">
+                    <div class="card shadow-lg o-hidden border-0 my-5">
+                        <div class="card-body p-0">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h4 class="text-dark mb-4">Зарегистрироваться!</h4>
                                         </div>
+                                        <div class="user">
 
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password"
-                                                id="password2REG" placeholder="Повторите пароль" name="password" required="">
-                                        </div>
+                                            <div class="mb-3"><input class="form-control form-control-user" type="email"
+                                                    id="nicknameREG" aria-describedby="emailHelp" placeholder="Ваше имя"
+                                                    name="email" required=""></div>
 
-                                        <div class="row mb-3">
-                                            <p id="errorMsgREG" class="text-danger" style="display:none;">Paragraph</p>
+                                            <div class="mb-3"><input class="form-control form-control-user" type="email"
+                                                    id="loginREG" aria-describedby="emailHelp" placeholder="Ваш e-mail"
+                                                    name="email" required=""></div>
+
+                                            <div class="mb-3"><input class="form-control form-control-user"
+                                                    type="password" id="password1REG" placeholder="Пароль"
+                                                    name="password" required="">
+                                            </div>
+
+                                            <div class="mb-3"><input class="form-control form-control-user"
+                                                    type="password" id="password2REG" placeholder="Повторите пароль"
+                                                    name="password" required="">
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <p id="errorMsgREG" class="text-danger" style="display:none;">Paragraph
+                                                </p>
+                                            </div>
+                                            <button class="btn btn-primary d-block btn-user w-100"
+                                                id="makeAccount">Создать
+                                                аккаунт!</button>
+                                            <hr>
                                         </div>
-                                        <button class="btn btn-primary d-block btn-user w-100" id="makeAccount">Создать
-                                            аккаунт!</button>
-                                        <hr>
-                                    </div>
-                                    <div class="text-center"><a class="small" href="register.html">Уже есть профиль.</a>
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-link" id="btnToAuthorization">Уже есть
+                                                профиль.</button>
+                                            <!-- <a class="small" id="btnToAuthorization">Уже есть профиль.</a> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>

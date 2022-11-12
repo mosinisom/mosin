@@ -29,6 +29,7 @@ const password1 = document.getElementById("password1REG");
 const password2 = document.getElementById("password2REG");
 const makeAccount = document.getElementById("makeAccount");
 const errorMsgREG = document.getElementById('errorMsgREG');
+const nickName = document.getElementById("nicknameREG");
 
 	function displayErrorMsgREG(e) {
 		errorMsgREG.style.display = "block";
@@ -62,4 +63,28 @@ const errorMsgREG = document.getElementById('errorMsgREG');
 			displayErrorMsgREG("Пароли не совпадают");
 	});
 
+// кнопки "создать аккаунт" и "уже есть аккаунт"
+const btnToRegistration = document.getElementById("btnToRegistration");
+const btnToAuthorization = document.getElementById("btnToAuthorization");
+
+btnToRegistration.addEventListener("click", function() {
+	document.getElementById("auth").classList.add('d-none');
+	document.getElementById("registration").classList.remove('d-none');
+});
+
+btnToAuthorization.addEventListener("click", function() {
+	document.getElementById("registration").classList.add('d-none');
+	document.getElementById("auth").classList.remove('d-none');
+});
+
+// после регистрации переход на страницу авторизации
+// makeAccount.addEventListener("click", function() {
+// 	document.getElementById("registration").classList.add('d-none');
+// 	document.getElementById("auth").classList.remove('d-none');
+// 	// очистка полей
+// 	loginREG.value = "";
+// 	password1.value = "";
+// 	password2.value = "";
+// 	nickName.value = "";
+// });
 

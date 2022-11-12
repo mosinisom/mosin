@@ -13,7 +13,6 @@ window.onload = function () {
         if (!!data) {
             auth.classList.remove('d-flex');
             auth.classList.add('d-none');
-
             nav.classList.remove('d-none');
 
             console.log(converter);
@@ -45,14 +44,35 @@ window.onload = function () {
 
     // регистрация --------------------------------------------------------------------------------------------
     async function sendRegisterHandler() {
-        const login = document.getElementById('loginREG').value;
-        const name = document.getElementById('nicknameREG').value;
-        const password = document.getElementById('password2REG').value;
+        const login = document.getElementById('loginREG');
+        const name = document.getElementById('nicknameREG');
+        const password1 = document.getElementById('password1REG');
+        const password2 = document.getElementById('password2REG');
 
-        const data = await server.register(login, password, name);
-
+        if (password1.value === password2.value) {
+            const data = await server.register(login.value, name.value, password1.value);
+            console.log(data);
+            if (!!data) {
+                alert("На указанный e-mail отправлено письмо с подтверждением регистрации");
+                // очистка полей
+                login.value = '';
+                name.value = '';
+                password1.value = '';
+                password2.value = '';
+                // переход на авторизацию
+                document.getElementById("registration").classList.add('d-none');
+                document.getElementById("auth").classList.remove('d-none');
+            }
+            else {
+                alert("Либо такой e-mail уже зарегистрирован, либо что-то пошло не так");
+            }
+        }
         console.log('до сюда дошло');
-        console.log(data);
+
+
+
+        // const data = await server.register(login, password2, name);
+        // console.log(data);
     }
     document.getElementById('makeAccount').addEventListener('click', sendRegisterHandler);
 
