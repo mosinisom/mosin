@@ -47,4 +47,27 @@ class Server {
         return null;
     }
 
+    async logout() {
+        if (this.token) {
+            return await this.send({ 
+                method: 'logout', 
+                token: this.token 
+            });
+        }
+        return null;
+    }
+
+    async sendMail(email, theme, text) {
+        if (email && theme && text) {
+            return await this.send({ 
+                method: 'sendMail', 
+                email, 
+                theme, 
+                text,
+                token: this.token,
+            });
+        }
+        return null;
+    }
+
 }

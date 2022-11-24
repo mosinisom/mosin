@@ -3,23 +3,23 @@ const login = document.getElementById("login");
 const sendLogin = document.getElementById("sendLogin");
 const errorMsg = document.getElementById('errorMsg');
 
-	function displayErrorMsg(e) {
-		errorMsg.style.display = "block";
-		errorMsg.innerHTML = e;
-		sendLogin.disabled = true;
-	}
+function displayErrorMsg(e) {
+	errorMsg.style.display = "block";
+	errorMsg.innerHTML = e;
+	sendLogin.disabled = true;
+}
 
-	function hideErrorMsg() {
-		errorMsg.style.display = "none";
-		sendLogin.disabled = false;
-	}
-	
-	login.addEventListener("change", function() {
-		if(login.value.match(/^[^@]+@[^@]+\.[^@]+$/))
-			hideErrorMsg();
-		else
-			displayErrorMsg("Неправильный формат e-mail");
-	});
+function hideErrorMsg() {
+	errorMsg.style.display = "none";
+	sendLogin.disabled = false;
+}
+
+login.addEventListener("change", function () {
+	if (login.value.match(/^[^@]+@[^@]+\.[^@]+$/))
+		hideErrorMsg();
+	else
+		displayErrorMsg("Неправильный формат e-mail");
+});
 
 
 
@@ -31,48 +31,48 @@ const makeAccount = document.getElementById("makeAccount");
 const errorMsgREG = document.getElementById('errorMsgREG');
 const nickName = document.getElementById("nicknameREG");
 
-	function displayErrorMsgREG(e) {
-		errorMsgREG.style.display = "block";
-		errorMsgREG.innerHTML = e;
-		makeAccount.disabled = true;
-	}	
+function displayErrorMsgREG(e) {
+	errorMsgREG.style.display = "block";
+	errorMsgREG.innerHTML = e;
+	makeAccount.disabled = true;
+}
 
-	function hideErrorMsgREG() {
-		errorMsgREG.style.display = "none";
-		makeAccount.disabled = false;
-	}
+function hideErrorMsgREG() {
+	errorMsgREG.style.display = "none";
+	makeAccount.disabled = false;
+}
 
-	loginREG.addEventListener("change", function() {
-		if(loginREG.value.match(/^[^@]+@[^@]+\.[^@]+$/))
-			hideErrorMsgREG();
-		else
-			displayErrorMsgREG("Неправильный формат e-mail");
-	});
+loginREG.addEventListener("change", function () {
+	if (loginREG.value.match(/^[^@]+@[^@]+\.[^@]+$/))
+		hideErrorMsgREG();
+	else
+		displayErrorMsgREG("Неправильный формат e-mail");
+});
 
-	password1.addEventListener("change", function() {
-		if(password1.value.length >= 8)
-			hideErrorMsgREG();
-		else
-			displayErrorMsgREG("Пароль должен быть не менее 8 символов");
-	});
+password1.addEventListener("change", function () {
+	if (password1.value.length >= 8)
+		hideErrorMsgREG();
+	else
+		displayErrorMsgREG("Пароль должен быть не менее 8 символов");
+});
 
-	password2.addEventListener("change", function() {
-		if(password1.value === password2.value)
-			hideErrorMsgREG();
-		else
-			displayErrorMsgREG("Пароли не совпадают");
-	});
+password2.addEventListener("change", function () {
+	if (password1.value === password2.value)
+		hideErrorMsgREG();
+	else
+		displayErrorMsgREG("Пароли не совпадают");
+});
 
 // кнопки "создать аккаунт" и "уже есть аккаунт"
 const btnToRegistration = document.getElementById("btnToRegistration");
 const btnToAuthorization = document.getElementById("btnToAuthorization");
 
-btnToRegistration.addEventListener("click", function() {
+btnToRegistration.addEventListener("click", function () {
 	document.getElementById("auth").classList.add('d-none');
 	document.getElementById("registration").classList.remove('d-none');
 });
 
-btnToAuthorization.addEventListener("click", function() {
+btnToAuthorization.addEventListener("click", function () {
 	document.getElementById("registration").classList.add('d-none');
 	document.getElementById("auth").classList.remove('d-none');
 });

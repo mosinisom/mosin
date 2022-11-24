@@ -3,6 +3,17 @@ window.onload = function () {
     const auth = document.getElementById('auth');
     const nav = document.getElementById("nav");
     const converter = document.getElementById('converter');
+    const registration = document.getElementById('registration');
+    const logout = document.getElementById('logout');
+    const sendMail = document.getElementById('sendMail');
+
+    const arrayOfParts = [auth, nav, converter, registration];
+
+
+    // Проверка авторизации через токен
+    // if(localStorage.getItem('token')) {
+
+
 
     // авторизация --------------------------------------------------------------------------------------------
     async function sendLoginHandler() {
@@ -11,16 +22,15 @@ window.onload = function () {
         const data = await server.login(login, password);
 
         if (!!data) {
-            auth.classList.remove('d-flex');
             auth.classList.add('d-none');
             nav.classList.remove('d-none');
 
-            console.log(converter);
 
-            converter.classList.remove('d-none');
-            // convert.classList.add('d-flex');
+            // converter.classList.remove('d-none');
+            sendMail.classList.remove('d-none');
         }
-        console.log(data);
+        console.log(server.token);
+        localStorage.setItem('token', server.token);
     }
     document.getElementById('sendLogin').addEventListener('click', sendLoginHandler);
 
@@ -39,6 +49,7 @@ window.onload = function () {
 
         document.getElementById('answer').value = answer;
 
+        // console.log(server.token);
     }
     document.getElementById('sendConvert').addEventListener('click', sendConvertHandler);
 
@@ -50,7 +61,7 @@ window.onload = function () {
         const password2 = document.getElementById('password2REG');
 
         if (password1.value === password2.value) {
-            const data = await server.register(login.value, name.value, password1.value);
+            const data = await server.register(login.value, password1.value, name.value);
             console.log(data);
             if (!!data) {
                 alert("На указанный e-mail отправлено письмо с подтверждением регистрации");
@@ -60,21 +71,47 @@ window.onload = function () {
                 password1.value = '';
                 password2.value = '';
                 // переход на авторизацию
-                document.getElementById("registration").classList.add('d-none');
-                document.getElementById("auth").classList.remove('d-none');
+                registration.classList.add('d-none');
+                auth.classList.remove('d-none');
             }
             else {
                 alert("Либо такой e-mail уже зарегистрирован, либо что-то пошло не так");
             }
         }
-        console.log('до сюда дошло');
-
-
-
-        // const data = await server.register(login, password2, name);
-        // console.log(data);
+        // console.log('до сюда дошло');
     }
     document.getElementById('makeAccount').addEventListener('click', sendRegisterHandler);
+
+    // выход из аккаунта --------------------------------------------------------------------------------------------
+    async function logoutHandler() {
+        arrayOfParts.forEach((item) => {
+            item.classList.add('d-none');
+        });
+        auth.classList.remove('d-none');
+
+        const data = await server.logout();
+        console.log(data);
+    }
+    logout.addEventListener('click', logoutHandler);
+
+    // отправка письма --------------------------------------------------------------------------------------------
+    async function sendMailHandler() {
+        const emailtoUser = document.getElementById('emailToUser');
+        const themeOfMail = document.getElementById('themeOfMail');
+        const textToUser = document.getElementById('textToUser');
+
+        
+
+        const data = await server.sendMail(emailtoUser.value, themeOfMail.value, textToUser.value);
+        console.log(data);
+
+        // очистка полей
+        emailtoUser.value = '';
+        themeOfMail.value = '';
+        textToUser.value = '';
+    }
+    document.getElementById('btnSendMail').addEventListener('click', sendMailHandler);
+
 
 
 

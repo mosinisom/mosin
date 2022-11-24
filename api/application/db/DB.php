@@ -41,6 +41,11 @@ class DB {
         return $this->db->query($query)->fetchObject();
     }
 
+    public function getUserByEmail($email) {
+        $query = 'SELECT * FROM users WHERE login="' . $email . '"';
+        return $this->db->query($query)->fetchObject();
+    }
+
     public function updateToken($id, $token) {
         $query = 'UPDATE users SET token="' . $token . '" WHERE id=' . $id;
         $this->db->query($query);
@@ -63,7 +68,12 @@ class DB {
         return true;
     }
 
-
+    
+    public function sendMail($token, $email, $theme, $text) {
+        $query = 'INSERT INTO mails (idfromuser, idtouser, theme, content) VALUES ((SELECT id FROM users WHERE token="' . $token . '"), (SELECT id FROM users WHERE login="' . $email . '"), "' . $theme . '", "' . $text . '")';
+        $this->db->query($query);
+        return true;
+    }
 
 }
 

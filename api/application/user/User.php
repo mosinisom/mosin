@@ -28,10 +28,6 @@ class User {
     }
 
     function register($login, $password, $name) {
-        // $user = $this->db->getUser($login);
-        // if ($user) {
-        //     return false;
-        // }
         if($login && $password && $name) {
             return $this->db->register($login, $password, $name);
         }

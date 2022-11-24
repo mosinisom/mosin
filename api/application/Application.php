@@ -2,12 +2,14 @@
 require('db/DB.php');
 require('user/User.php');
 require('convert/Convert.php');
+require('mail/Mail.php');
 
 class Application {
     function __construct() {
         $db = new DB();
         $this->user = new User($db);
         $this->convertModule = new Convert();
+        $this->mail = new Mail($db);
     }
 
     function login($params) {
@@ -39,6 +41,17 @@ class Application {
                 $params['login'],
                 $params['password'], 
                 $params['name']
+            );
+        }
+    }
+
+    function sendMail($params) {
+        if ($params['token'] && $params['email'] && $params['theme'] && $params['text']) {
+            return $this->mail->sendMail(
+                $params['token'],
+                $params['email'], 
+                $params['theme'], 
+                $params['text'] 
             );
         }
     }
