@@ -15,6 +15,7 @@ function router($params) {
             case 'logout': return $app->logout($params);
             case 'register': return $app->register($params);
             case 'sendMail': return $app->sendMail($params);
+            case 'checkToken': return $app->checkToken($params);
             
             //...
         }

@@ -7,11 +7,24 @@ window.onload = function () {
     const logout = document.getElementById('logout');
     const sendMail = document.getElementById('sendMail');
 
-    const arrayOfParts = [auth, nav, converter, registration];
+    const arrayOfParts = [auth, nav, converter, registration, sendMail];
 
 
     // Проверка авторизации через токен
-    // if(localStorage.getItem('token')) {
+    if(localStorage.getItem('token')) {
+        server.checkToken(localStorage.getItem('token'))
+            .then(data => {
+                if(!!data) {
+                    arrayOfParts.forEach(item => {
+                        item.classList.add('d-none');
+                    });
+                    nav.classList.remove('d-none');
+                    converter.classList.remove('d-none');
+                    server.token = localStorage.getItem('token');
+                }
+            });
+    }
+
 
 
 
@@ -49,7 +62,7 @@ window.onload = function () {
 
         document.getElementById('answer').value = answer;
 
-        // console.log(server.token);
+        console.log(server.token);
     }
     document.getElementById('sendConvert').addEventListener('click', sendConvertHandler);
 
@@ -91,6 +104,7 @@ window.onload = function () {
 
         const data = await server.logout();
         console.log(data);
+        localStorage.removeItem('token');
     }
     logout.addEventListener('click', logoutHandler);
 

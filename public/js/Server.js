@@ -70,4 +70,14 @@ class Server {
         return null;
     }
 
+    async checkToken(token) {
+        if (token) {
+            return await this.send({ 
+                method: 'checkToken', 
+                token 
+            });
+        }
+        return null;
+    }
+
 }

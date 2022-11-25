@@ -55,4 +55,10 @@ class Application {
             );
         }
     }
+
+    function checkToken($params) {
+        if ($params['token']) {
+            return $this->user->getUser($params['token']);
+        }
+    }
 }
