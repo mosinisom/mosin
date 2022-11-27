@@ -82,10 +82,15 @@ class DB {
     public function addGameRecord($game, $token, $score){
         // $query = 'INSERT INTO records (gameid, userid, score) VALUES ((SELECT id FROM games WHERE name="' . $game . '"), (SELECT id FROM users WHERE token="' . $token . '"),' . $score . ')';
         $query = "INSERT INTO `records` (`id`, `gameid`, `userid`, `score`, `date`) VALUES (NULL, (SELECT id FROM games WHERE name='" . $game . "'), (SELECT id FROM users WHERE token='" . $token . "'), '" . $score . "', NOW())";
-
         $this->db->query($query);
         return true;
     }
+    
+    public function checkRecord($game, $token, $score){
+        $query = 'SELECT * FROM records WHERE gameid=(SELECT id FROM games WHERE name="' . $game . '") AND userid=(SELECT id FROM users WHERE token="' . $token . '") AND score=' . $score;
+        return $this->db->query($query)->fetchObject();
+    }
+
 
     
 
