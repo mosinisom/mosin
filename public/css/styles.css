@@ -1,3 +1,7 @@
 #logout:hover {
     text-decoration: underline;
 }
+
+li a {
+    cursor: pointer;
+}

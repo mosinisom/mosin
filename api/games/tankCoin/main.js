@@ -10,6 +10,7 @@ const tank = document.querySelector('.tank'),
     time = document.querySelector('.time'),
     restartBtn = document.querySelector('.restart');
     exitBtn = document.querySelector('.exit');
+    buttons = document.querySelector('.buttons');
 
     const token = localStorage.getItem('token');
 
@@ -88,8 +89,10 @@ function move(e) {
     }
 
     if (scoreNum === 3) {
-        restartBtn.style.display = 'block';
-        exitBtn.style.display = 'block';
+        // restartBtn.style.display = 'block';
+        // exitBtn.style.display = 'block';
+
+        buttons.style.display = 'flex';
         clearInterval(increaseTime);
 
     }
@@ -137,15 +140,18 @@ function startGame() {
 
     scoreNum = 0;
     timeNum = 0;
-
 }
 
 restartBtn.addEventListener('click', restart);
 
 function restart() {
+    if (timeNum < bestTime) {
+        bestTime = timeNum;
+    }
+    console.log(bestTime);
     startGame();
-    restartBtn.style.display = 'none';
-    exitBtn.style.display = 'none';
+
+    buttons.style.display = 'none';
     coin1.style.visibility = 'visible';
     coin2.style.visibility = 'visible';
     coin3.style.visibility = 'visible';
@@ -157,16 +163,26 @@ exitBtn.addEventListener('click', exit);
 function exit() {
     if (timeNum < bestTime) {
         bestTime = timeNum;
-        saveScore();
     }
+    saveScore();
+    goBack();
 }
-
 
 
 function saveScore() {
     const data = {'game': 'tankCoin', 'score': bestTime.toFixed(4), 'token': token};
     localStorage.setItem('newRecord', JSON.stringify(data));
 }
+
+// go to href="../../../index.html" function
+
+function goBack() {
+    window.location.href = "../../../index.html";
+}
+
+
+
+
 
 
 

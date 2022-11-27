@@ -6,6 +6,9 @@ window.onload = function () {
     const registration = document.getElementById('registration');
     const logout = document.getElementById('logout');
     const sendMail = document.getElementById('sendMail');
+    const goToSendMail = document.getElementById('goToSendMail');
+    const goToReadMail = document.getElementById('goToRegistration');
+    const goToConverter = document.getElementById('goToConverter');
 
     const record = localStorage.getItem('newRecord');
     // parse JSON string to object
@@ -134,6 +137,26 @@ window.onload = function () {
         console.log(data);
     }
     addRecordHandler();
+
+    // переход к отправке письма --------------------------------------------------------------------------------------------
+    function goToSendMailFunc() {
+        arrayOfParts.forEach(item => {
+            item.classList.add('d-none');
+        });
+        sendMail.classList.remove('d-none');
+        nav.classList.remove('d-none');
+    }
+    goToSendMail.addEventListener('click', goToSendMailFunc);
+
+    // переход к конвертеру --------------------------------------------------------------------------------------------
+    function goToConverterFunc() {
+        arrayOfParts.forEach(item => {
+            item.classList.add('d-none');
+        });
+        converter.classList.remove('d-none');
+        nav.classList.remove('d-none');
+    }
+    goToConverter.addEventListener('click', goToConverterFunc);
 
 
 
