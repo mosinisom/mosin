@@ -7,6 +7,10 @@ window.onload = function () {
     const logout = document.getElementById('logout');
     const sendMail = document.getElementById('sendMail');
 
+    const record = localStorage.getItem('newRecord');
+    // parse JSON string to object
+    const newRecord = JSON.parse(record);
+
     const arrayOfParts = [auth, nav, converter, registration, sendMail];
 
 
@@ -24,8 +28,6 @@ window.onload = function () {
                 }
             });
     }
-
-
 
 
     // авторизация --------------------------------------------------------------------------------------------
@@ -57,11 +59,12 @@ window.onload = function () {
         const secondSelect = document.getElementById('toSystem');
         const toSystem = secondSelect.options[secondSelect.selectedIndex].value;
 
-        console.log(number, fromSystem, toSystem);
+        // console.log(number, fromSystem, toSystem);
         const answer = await server.convert(number, fromSystem, toSystem);
 
         document.getElementById('answer').value = answer;
 
+        // console.log(newRecord.game, newRecord.score);
         console.log(server.token);
     }
     document.getElementById('sendConvert').addEventListener('click', sendConvertHandler);
@@ -114,8 +117,6 @@ window.onload = function () {
         const themeOfMail = document.getElementById('themeOfMail');
         const textToUser = document.getElementById('textToUser');
 
-        
-
         const data = await server.sendMail(emailtoUser.value, themeOfMail.value, textToUser.value);
         console.log(data);
 
@@ -125,6 +126,14 @@ window.onload = function () {
         textToUser.value = '';
     }
     document.getElementById('btnSendMail').addEventListener('click', sendMailHandler);
+
+    // добавление рекорда в таблицу --------------------------------------------------------------------------------------------
+    async function addRecordHandler() {
+        // const token = server.token;
+        const data = await server.addGameRecord(newRecord.game, newRecord.token, newRecord.score);
+        console.log(data);
+    }
+    addRecordHandler();
 
 
 

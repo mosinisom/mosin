@@ -3,6 +3,7 @@ require('db/DB.php');
 require('user/User.php');
 require('convert/Convert.php');
 require('mail/Mail.php');
+require('record/Record.php');
 
 class Application {
     function __construct() {
@@ -10,6 +11,7 @@ class Application {
         $this->user = new User($db);
         $this->convertModule = new Convert();
         $this->mail = new Mail($db);
+        $this->record = new Record($db);
     }
 
     function login($params) {
@@ -59,6 +61,16 @@ class Application {
     function checkToken($params) {
         if ($params['token']) {
             return $this->user->getUser($params['token']);
+        }
+    }
+
+    function addGameRecord($params) {
+        if ($params['token'] && $params['game'] && $params['score']) {
+            return $this->record->addGameRecord(
+                $params['game'], 
+                $params['token'],
+                $params['score']
+            );
         }
     }
 }

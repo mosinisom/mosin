@@ -77,14 +77,4 @@ btnToAuthorization.addEventListener("click", function () {
 	document.getElementById("auth").classList.remove('d-none');
 });
 
-// после регистрации переход на страницу авторизации
-// makeAccount.addEventListener("click", function() {
-// 	document.getElementById("registration").classList.add('d-none');
-// 	document.getElementById("auth").classList.remove('d-none');
-// 	// очистка полей
-// 	loginREG.value = "";
-// 	password1.value = "";
-// 	password2.value = "";
-// 	nickName.value = "";
-// });
 

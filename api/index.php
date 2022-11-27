@@ -16,6 +16,7 @@ function router($params) {
             case 'register': return $app->register($params);
             case 'sendMail': return $app->sendMail($params);
             case 'checkToken': return $app->checkToken($params);
+            case 'addGameRecord': return $app->addGameRecord($params);
             
             //...
         }

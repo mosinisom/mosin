@@ -1,0 +1,68 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: url(https://res.cloudinary.com/du4rxz1wd/image/upload/v1666633651/depositphotos_575075484-stock-illustration-grass-texture-pixel-art-vector_lbmdzr.webp);
+}
+
+.tank {
+    width: 150px;
+    height: 150px;
+    background: url(https://res.cloudinary.com/dspfsamgq/image/upload/v1588602306/tank_sy3sob.png);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.coin1, .coin2, .coin3{
+    width: 100px;
+    height: 110px;
+    background: url(https://res.cloudinary.com/du4rxz1wd/image/upload/c_scale,w_100/v1666626528/PngItem_635378_pdpsa2.png);
+    position: absolute;
+    top: 200;
+    left: 200;
+    /* visibility: hidden; */
+}
+
+
+
+
+.right {
+    transform: rotate(90deg);
+}
+
+.down {
+    transform: rotate(180deg);
+}
+
+.left {
+    transform: rotate(-90deg);
+}
+
+.up {
+    transform: rotate(0deg);
+}
+
+.restart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 30px;
+    display: none;
+}
+
+.exit {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    width: 100px;
+    height: 60px;
+    display: none;
+}
+
+.exit a {
+    text-decoration: none;
+    color: black;
+}

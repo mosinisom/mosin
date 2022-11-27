@@ -80,4 +80,17 @@ class Server {
         return null;
     }
 
+    async addGameRecord(game, token, score) {
+        console.log(game, token, score);
+        if (game && token && score) {
+            return await this.send({ 
+                method: 'addGameRecord', 
+                game,
+                token,
+                score,
+            });
+        }
+        return 'error';
+    }
+
 }

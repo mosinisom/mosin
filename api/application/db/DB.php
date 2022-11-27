@@ -68,12 +68,28 @@ class DB {
         return true;
     }
 
-    
     public function sendMail($token, $email, $theme, $text) {
         $query = 'INSERT INTO mails (idfromuser, idtouser, theme, content) VALUES ((SELECT id FROM users WHERE token="' . $token . '"), (SELECT id FROM users WHERE login="' . $email . '"), "' . $theme . '", "' . $text . '")';
         $this->db->query($query);
         return true;
     }
+
+    // public function getMails($token) {
+    //     $query = 'SELECT * FROM mails WHERE idtouser=(SELECT id FROM users WHERE token="' . $token . '")';
+    //     return $this->getArray($query);
+    // }
+
+    public function addGameRecord($game, $token, $score){
+        // $query = 'INSERT INTO records (gameid, userid, score) VALUES ((SELECT id FROM games WHERE name="' . $game . '"), (SELECT id FROM users WHERE token="' . $token . '"),' . $score . ')';
+        $query = "INSERT INTO `records` (`id`, `gameid`, `userid`, `score`, `date`) VALUES (NULL, (SELECT id FROM games WHERE name='" . $game . "'), (SELECT id FROM users WHERE token='" . $token . "'), '" . $score . "', NOW())";
+
+        $this->db->query($query);
+        return true;
+    }
+
+    
+
+
 
 }
 
