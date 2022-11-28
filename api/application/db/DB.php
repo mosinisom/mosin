@@ -31,6 +31,27 @@ class DB {
         return $result;
     }
 
+    private function replaceIdToEmail($array) {
+        $result = array();
+        foreach ($array as $key => $value) {
+            $result[$key] = $value;
+            if ($key == 'idfromuser') {
+                $result[$key] = $this->getEmailById($value);
+            }
+            if ($key == 'idtouser') {
+                $result[$key] = $this->getEmailById($value);
+            }
+        }
+        return $result;
+    }
+
+    private function getEmailById($id) {
+        $query = 'SELECT login FROM users WHERE id = ' . $id;
+        $stmt = $this->db->query($query);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+        return $result->login;
+    }
+
     public function getUser($login) {
         $query = 'SELECT * FROM users WHERE login="' . $login . '"';
         return $this->db->query($query)->fetchObject();
@@ -43,6 +64,11 @@ class DB {
 
     public function getUserByEmail($email) {
         $query = 'SELECT * FROM users WHERE login="' . $email . '"';
+        return $this->db->query($query)->fetchObject();
+    }
+
+    public function getUserById($id) {
+        $query = 'SELECT * FROM users WHERE id="' . $id . '"';
         return $this->db->query($query)->fetchObject();
     }
 
@@ -90,6 +116,14 @@ class DB {
         $query = 'SELECT * FROM records WHERE gameid=(SELECT id FROM games WHERE name="' . $game . '") AND userid=(SELECT id FROM users WHERE token="' . $token . '") AND score=' . $score;
         return $this->db->query($query)->fetchObject();
     }
+
+    public function getMails($token, $page) {
+        $query = 'SELECT * FROM mails WHERE idtouser=(SELECT id FROM users WHERE token="' . $token . '") LIMIT 10 OFFSET ' . ($page - 1) * 10;
+        $array = $this->getArray($query);
+        return array_map(array($this, 'replaceIdToEmail'), $array);
+    }
+
+
 
 
     

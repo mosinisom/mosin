@@ -7,14 +7,19 @@ window.onload = function () {
     const logout = document.getElementById('logout');
     const sendMail = document.getElementById('sendMail');
     const goToSendMail = document.getElementById('goToSendMail');
-    const goToReadMail = document.getElementById('goToRegistration');
+    const goToIncomingMails = document.getElementById('goToIncomingMails');
     const goToConverter = document.getElementById('goToConverter');
+    const incomingMails = document.getElementById('incomingMails');
+    const pagination = document.getElementById('pagination');
+    const emailTable = document.getElementById('emailTable');
 
     const record = localStorage.getItem('newRecord');
-    // parse JSON string to object
+
     const newRecord = JSON.parse(record);
 
-    const arrayOfParts = [auth, nav, converter, registration, sendMail];
+    const arrayOfParts = [auth, nav, converter, registration, sendMail, incomingMails];
+
+    let currentPage = 1;
 
 
     // Проверка авторизации через токен
@@ -27,7 +32,8 @@ window.onload = function () {
                     });
                     nav.classList.remove('d-none');
                     converter.classList.remove('d-none');
-                    server.token = localStorage.getItem('token');
+                    server.setToken(localStorage.getItem('token'));
+                    console.log(server.token);
                 }
             });
     }
@@ -62,13 +68,9 @@ window.onload = function () {
         const secondSelect = document.getElementById('toSystem');
         const toSystem = secondSelect.options[secondSelect.selectedIndex].value;
 
-        // console.log(number, fromSystem, toSystem);
         const answer = await server.convert(number, fromSystem, toSystem);
 
         document.getElementById('answer').value = answer;
-
-        // console.log(newRecord.game, newRecord.score);
-        console.log(server.token);
     }
     document.getElementById('sendConvert').addEventListener('click', sendConvertHandler);
 
@@ -81,7 +83,7 @@ window.onload = function () {
 
         if (password1.value === password2.value) {
             const data = await server.register(login.value, password1.value, name.value);
-            console.log(data);
+            // console.log(data);
             if (!!data) {
                 alert("На указанный e-mail отправлено письмо с подтверждением регистрации");
                 // очистка полей
@@ -97,7 +99,6 @@ window.onload = function () {
                 alert("Либо такой e-mail уже зарегистрирован, либо что-то пошло не так");
             }
         }
-        // console.log('до сюда дошло');
     }
     document.getElementById('makeAccount').addEventListener('click', sendRegisterHandler);
 
@@ -132,9 +133,8 @@ window.onload = function () {
 
     // добавление рекорда в таблицу --------------------------------------------------------------------------------------------
     async function addRecordHandler() {
-        // const token = server.token;
         const data = await server.addGameRecord(newRecord.game, newRecord.token, newRecord.score);
-        console.log(data);
+        // console.log(data);
     }
     addRecordHandler();
 
@@ -157,6 +157,63 @@ window.onload = function () {
         nav.classList.remove('d-none');
     }
     goToConverter.addEventListener('click', goToConverterFunc);
+
+    // переход ко входящим письмам
+    function goToIncomingMailsFunc() {
+        arrayOfParts.forEach(item => {
+            item.classList.add('d-none');
+        });
+        incomingMails.classList.remove('d-none');
+        nav.classList.remove('d-none');
+        getMailsHandler();
+    }
+    goToIncomingMails.addEventListener('click', goToIncomingMailsFunc); 
+
+    // пейджинг --------------------------------------------------------------------------------------------
+    pagination.addEventListener('click', e => {
+        if (e.target.classList.contains('page-link')) {
+            currentPage = currentPage + 1 * parseInt(e.target.getAttribute('data-page'));
+            if (currentPage < 1) 
+                currentPage = 1;
+                    // console.log(currentPage);
+            getMailsHandler();
+            }
+        }
+    );
+
+    // получение писем --------------------------------------------------------------------------------------------
+    async function getMailsHandler() {
+        const data = await server.getMails(currentPage);
+        console.log(data);
+        if (data) {
+            let mails = '';
+            data.forEach(item => {
+                mails += `
+                    <tr>
+                    <th scope="row">🙾</th>
+                    <td class="send-mail" data-user="${item.idfromuser}">${item.idfromuser}</td>
+                    <td>${item.theme}</td>
+                    <td>${item.content}</td>
+                    </tr>`;
+            });
+            emailTable.innerHTML = mails;
+        }
+    }
+
+    // отправка письма нажатому пользователю --------------------------------------------------------------------------------------------
+    async function sendMailToUserHandler(e) {
+        console.log(e.target);
+        if (e.target.classList.contains('send-mail')) {
+            const email = e.target.getAttribute('data-user');
+            document.getElementById('emailToUser').value = email;
+            goToSendMailFunc();
+        }
+    }
+    emailTable.addEventListener('click', sendMailToUserHandler);
+
+
+
+    
 
 
 

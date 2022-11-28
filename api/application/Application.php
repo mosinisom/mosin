@@ -16,13 +16,18 @@ class Application {
 
     function login($params) {
         if ($params['login'] && $params['password']) {
-            return $this->user->login($params['login'], $params['password']);
+            return $this->user->login(
+                $params['login'], 
+                $params['password']
+            );
         }
     }
 
     function logout($params) {
         if ($params['token']) { 
-            return $this->user->logout($params['token']);
+            return $this->user->logout(
+                $params['token']
+            );
         }
     }
 
@@ -60,7 +65,9 @@ class Application {
 
     function checkToken($params) {
         if ($params['token']) {
-            return $this->user->getUser($params['token']);
+            return $this->user->getUser(
+                $params['token']
+            );
         }
     }
 
@@ -70,6 +77,15 @@ class Application {
                 $params['game'], 
                 $params['token'],
                 $params['score']
+            );
+        }
+    }
+
+    function getMails($params) {
+        if ($params['token'] && $params['currentPage']) {
+            return $this->mail->getMails(
+                $params['token'], 
+                $params['currentPage']
             );
         }
     }

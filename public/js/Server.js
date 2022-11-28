@@ -3,14 +3,19 @@ class Server {
         this.token;
     }
 
+    
     async send(params = {}) {
         const query = Object.keys(params)
-            .map(key => `${key}=${params[key]}`).join('&');
+        .map(key => `${key}=${params[key]}`).join('&');
         const result = await fetch(`api/?${query}`);
         const answer = await result.json();
         return (answer.result === 'ok') ? answer.data : null;
     }
-
+    
+    setToken(token) {
+        this.token = token;
+    }
+    
     async login(login, password) {
         if (login && password) {
             const data = await this.send({ 
@@ -81,7 +86,6 @@ class Server {
     }
 
     async addGameRecord(game, token, score) {
-        console.log(game, token, score);
         if (game && token && score) {
             return await this.send({ 
                 method: 'addGameRecord', 
@@ -91,6 +95,18 @@ class Server {
             });
         }
         return 'error';
+    }
+
+    async getMails(currentPage) {
+        console.log(currentPage, this.token);
+        if (currentPage) {
+            return await this.send({ 
+                method: 'getMails', 
+                token: this.token,
+                currentPage,
+            });
+        }
+        return 'get mails error';
     }
 
 }
