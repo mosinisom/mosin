@@ -15,7 +15,7 @@ class Server {
     setToken(token) {
         this.token = token;
     }
-    
+
     async login(login, password) {
         if (login && password) {
             const data = await this.send({ 
@@ -98,7 +98,6 @@ class Server {
     }
 
     async getMails(currentPage) {
-        console.log(currentPage, this.token);
         if (currentPage) {
             return await this.send({ 
                 method: 'getMails', 

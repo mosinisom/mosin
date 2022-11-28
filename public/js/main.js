@@ -33,7 +33,6 @@ window.onload = function () {
                     nav.classList.remove('d-none');
                     converter.classList.remove('d-none');
                     server.setToken(localStorage.getItem('token'));
-                    console.log(server.token);
                 }
             });
     }
@@ -184,7 +183,6 @@ window.onload = function () {
     // получение писем --------------------------------------------------------------------------------------------
     async function getMailsHandler() {
         const data = await server.getMails(currentPage);
-        console.log(data);
         if (data) {
             let mails = '';
             data.forEach(item => {
