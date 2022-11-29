@@ -45,8 +45,9 @@
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
                                 data-bs-toggle="dropdown" href="#" style="color: rgba(224,217,217,0.9);">Сообщения</a>
                             <div class="dropdown-menu">
-                                <button class="dropdown-item" type="button" id="goToSendMail">Отправить</button>
-                                <button class="dropdown-item" type="button" id="goToIncomingMails">Прочитать</button>
+                                <button class="dropdown-item" type="button" id="goToSendMail">Написать</button>
+                                <button class="dropdown-item" type="button" id="goToIncomingMails">Входящие</button>
+                                <button class="dropdown-item" type="button" id="goToOutcomingMails">Отправленные</button>
                             </div>
                     </ul>
                     <p class="ms-auto navbar-text actions">
@@ -270,17 +271,6 @@
                 <td>Mark</td>
                 <td>Otto</td>
                 <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">🙾</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">🙾</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
               </tr> -->
             </tbody>
           </table>
@@ -293,6 +283,36 @@
         </div>
     </div>
     <!-- КОНЕЦ ВХОДЯЩИХ ПИСЕМ -->
+
+    <!-- ИСХОДЯЩИЕ ПИСЬМА -->
+    <div class="d-none" id="outgoingMails">
+        <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">To</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Text</th>
+              </tr>
+            </thead>
+            <tbody id="emailTableOut">
+              <!-- <tr>
+                <th scope="row">🙾</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr> -->
+            </tbody>
+          </table>
+
+          <div>
+            <ul class="pagination" id="paginationOut">
+                <li class="page-item"><a class="page-link" data-page="-1">⮜</a></li>
+                <li class="page-item"><a class="page-link" data-page="1">⮞</a></li>
+              </ul>
+        </div>
+    </div>
+    <!-- КОНЕЦ ИСХОДЯЩИХ ПИСЕМ -->
 
 
     <script src="public/js/authAndRegLogic.js"></script>

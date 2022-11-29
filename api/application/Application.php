@@ -89,4 +89,13 @@ class Application {
             );
         }
     }
+
+    function getSentMails($params) {
+        if ($params['token'] && $params['currentPage']) {
+            return $this->mail->getSentMails(
+                $params['token'], 
+                $params['currentPage']
+            );
+        }
+    }
 }

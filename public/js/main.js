@@ -10,23 +10,27 @@ window.onload = function () {
     const goToIncomingMails = document.getElementById('goToIncomingMails');
     const goToConverter = document.getElementById('goToConverter');
     const incomingMails = document.getElementById('incomingMails');
+    const outgoingMails = document.getElementById('outgoingMails');
     const pagination = document.getElementById('pagination');
     const emailTable = document.getElementById('emailTable');
+    const emailTableOut = document.getElementById('emailTableOut');
+    const paginationOut = document.getElementById('paginationOut');
+    const goToOutcomingMails = document.getElementById('goToOutcomingMails');
 
     const record = localStorage.getItem('newRecord');
 
     const newRecord = JSON.parse(record);
 
-    const arrayOfParts = [auth, nav, converter, registration, sendMail, incomingMails];
+    const arrayOfParts = [auth, nav, converter, registration, sendMail, incomingMails, outgoingMails];
 
     let currentPage = 1;
 
 
     // Проверка авторизации через токен
-    if(localStorage.getItem('token')) {
+    if (localStorage.getItem('token')) {
         server.checkToken(localStorage.getItem('token'))
             .then(data => {
-                if(!!data) {
+                if (!!data) {
                     arrayOfParts.forEach(item => {
                         item.classList.add('d-none');
                     });
@@ -159,6 +163,7 @@ window.onload = function () {
 
     // переход ко входящим письмам
     function goToIncomingMailsFunc() {
+        currentPage = 1;
         arrayOfParts.forEach(item => {
             item.classList.add('d-none');
         });
@@ -166,41 +171,52 @@ window.onload = function () {
         nav.classList.remove('d-none');
         getMailsHandler();
     }
-    goToIncomingMails.addEventListener('click', goToIncomingMailsFunc); 
+    goToIncomingMails.addEventListener('click', goToIncomingMailsFunc);
 
     // пейджинг --------------------------------------------------------------------------------------------
     pagination.addEventListener('click', e => {
         if (e.target.classList.contains('page-link')) {
             currentPage = currentPage + 1 * parseInt(e.target.getAttribute('data-page'));
-            if (currentPage < 1) 
+            if (currentPage < 1)
                 currentPage = 1;
-                    // console.log(currentPage);
+            // console.log(currentPage);
             getMailsHandler();
-            }
         }
+    }
+    );
+    // пейджинг для отправленных писем -
+    paginationOut.addEventListener('click', e => {
+        if (e.target.classList.contains('page-link')) {
+            currentPage = currentPage + 1 * parseInt(e.target.getAttribute('data-page'));
+            if (currentPage < 1)
+                currentPage = 1;
+            // console.log(currentPage);
+            getSentMailsHandler();
+        }
+    }
     );
 
     // получение писем --------------------------------------------------------------------------------------------
     async function getMailsHandler() {
         const data = await server.getMails(currentPage);
         if (data) {
-            let mails = '';
+            let mail = '';
             data.forEach(item => {
-                mails += `
+                mail = `
                     <tr>
                     <th scope="row">🙾</th>
                     <td class="send-mail" data-user="${item.idfromuser}">${item.idfromuser}</td>
                     <td>${item.theme}</td>
                     <td>${item.content}</td>
                     </tr>`;
+                emailTable.innerHTML = mail + emailTable.innerHTML;
+
             });
-            emailTable.innerHTML = mails;
         }
     }
 
     // отправка письма нажатому пользователю --------------------------------------------------------------------------------------------
     async function sendMailToUserHandler(e) {
-        console.log(e.target);
         if (e.target.classList.contains('send-mail')) {
             const email = e.target.getAttribute('data-user');
             document.getElementById('emailToUser').value = email;
@@ -208,10 +224,43 @@ window.onload = function () {
         }
     }
     emailTable.addEventListener('click', sendMailToUserHandler);
+    emailTableOut.addEventListener('click', sendMailToUserHandler);
+
+    // переход к отправленным письмам --------------------------------------------------------------------------------------------
+    function goToSentMailsFunc() {
+        currentPage = 1;
+        arrayOfParts.forEach(item => {
+            item.classList.add('d-none');
+        });
+        outgoingMails.classList.remove('d-none');
+        nav.classList.remove('d-none');
+        getSentMailsHandler();
+    }
+    goToOutcomingMails.addEventListener('click', goToSentMailsFunc);
+
+    // получение отправленных писем --------------------------------------------------------------------------------------------
+    async function getSentMailsHandler() {
+        const data = await server.getSentMails(currentPage);
+        if (data) {
+            let mail = '';
+            data.forEach(item => {
+                mail = `
+                    <tr>
+                    <th scope="row">🙾</th>
+                    <td class="send-mail" data-user="${item.idtouser}">${item.idtouser}</td>
+                    <td>${item.theme}</td>
+                    <td>${item.content}</td>
+                    </tr>`;
+                    emailTableOut.innerHTML = mail + emailTableOut.innerHTML;
+
+            });
+        }
+    }
 
 
 
-    
+
+
 
 
 

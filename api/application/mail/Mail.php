@@ -16,6 +16,12 @@ class Mail {
         }
     }
 
+    function getSentMails($token, $page) {
+        if ($token && $page) {
+            return $this->db->getSentMails($token, $page);
+        }
+    }
+
     
 
 

@@ -100,11 +100,6 @@ class DB {
         return true;
     }
 
-    // public function getMails($token) {
-    //     $query = 'SELECT * FROM mails WHERE idtouser=(SELECT id FROM users WHERE token="' . $token . '")';
-    //     return $this->getArray($query);
-    // }
-
     public function addGameRecord($game, $token, $score){
         // $query = 'INSERT INTO records (gameid, userid, score) VALUES ((SELECT id FROM games WHERE name="' . $game . '"), (SELECT id FROM users WHERE token="' . $token . '"),' . $score . ')';
         $query = "INSERT INTO `records` (`id`, `gameid`, `userid`, `score`, `date`) VALUES (NULL, (SELECT id FROM games WHERE name='" . $game . "'), (SELECT id FROM users WHERE token='" . $token . "'), '" . $score . "', NOW())";
@@ -119,6 +114,12 @@ class DB {
 
     public function getMails($token, $page) {
         $query = 'SELECT * FROM mails WHERE idtouser=(SELECT id FROM users WHERE token="' . $token . '") LIMIT 10 OFFSET ' . ($page - 1) * 10;
+        $array = $this->getArray($query);
+        return array_map(array($this, 'replaceIdToEmail'), $array);
+    }
+
+    public function getSentMails($token, $page) {
+        $query = 'SELECT * FROM mails WHERE idfromuser=(SELECT id FROM users WHERE token="' . $token . '") LIMIT 10 OFFSET ' . ($page - 1) * 10;
         $array = $this->getArray($query);
         return array_map(array($this, 'replaceIdToEmail'), $array);
     }

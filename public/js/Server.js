@@ -108,4 +108,15 @@ class Server {
         return 'get mails error';
     }
 
+    async getSentMails(currentPage) {
+        if (currentPage) {
+            return await this.send({ 
+                method: 'getSentMails', 
+                token: this.token,
+                currentPage,
+            });
+        }
+        return 'error';
+    }
+
 }
