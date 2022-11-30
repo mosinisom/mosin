@@ -18,10 +18,10 @@ window.onload = function () {
     const goToOutcomingMails = document.getElementById('goToOutcomingMails');
     const goToRecords = document.getElementById('goToRecords');
     const records = document.getElementById('records');
-    // const tankCoinTable = document.getElementById('tankCoinTable');
-    // const cursorTable = document.getElementById('cursorTable');
-    // const discoTable = document.getElementById('discoTable');
-    // const redButtonTable = document.getElementById('redButtonTable');
+    const tankCoinTable = document.getElementById('tankCoinTable');
+    const cursorTable = document.getElementById('cursorTable');
+    const discoTable = document.getElementById('discoTable');
+    const redButtonTable = document.getElementById('redButtonTable');
 
     const record = localStorage.getItem('newRecord');
     const newRecord = JSON.parse(record);
@@ -231,6 +231,11 @@ window.onload = function () {
     }
     emailTable.addEventListener('click', sendMailToUserHandler);
     emailTableOut.addEventListener('click', sendMailToUserHandler);
+    tankCoinTable.addEventListener('click', sendMailToUserHandler);
+    cursorTable.addEventListener('click', sendMailToUserHandler);
+    discoTable.addEventListener('click', sendMailToUserHandler);
+    redButtonTable.addEventListener('click', sendMailToUserHandler);
+
 
     // переход к отправленным письмам --------------------------------------------------------------------------------------------
     function goToSentMailsFunc() {
@@ -257,7 +262,7 @@ window.onload = function () {
                     <td>${item.theme}</td>
                     <td>${item.content}</td>
                     </tr>`;
-                    emailTableOut.innerHTML = mail + emailTableOut.innerHTML;
+                emailTableOut.innerHTML = mail + emailTableOut.innerHTML;
 
             });
         }
@@ -270,75 +275,75 @@ window.onload = function () {
         });
         records.classList.remove('d-none');
         nav.classList.remove('d-none');
-        // getRecordsHandler();
+        getRecordsHandler();
     }
     goToRecords.addEventListener('click', goToRecordsFunc);
 
-    // // получение всех таблиц рекордов --------------------------------------------------------------------------------------------
-    // async function getRecordsHandler() {
-    //     const data = await server.getRecords('tankCoin', false);
-    //     if (data) {
-    //         let record = '';
-    //         let i = 1;
-    //         data.forEach(item => {
-    //             record = `
-    //                 <tr>
-    //                 <th scope="row">${i}</th>
-    //                 <td>${item.userid}</td>
-    //                 <td>${item.score}</td>
-    //                 </tr>`;
-    //             tankCoinTable.innerHTML = record + tankCoinTable.innerHTML;
+    // получение всех таблиц рекордов --------------------------------------------------------------------------------------------
+    async function getRecordsHandler() {
+        const data = await server.getRecords('tankCoin', 'DESC');
+        if (data) {
+            let record = '';
+            let i = 10;
+            data.forEach(item => {
+                record = `
+                    <tr>
+                    <th scope="row">${i}</th>
+                    <td class="send-mail" data-user="${item.email}">${item.userid}</td>
+                    <td>${item.score}</td>
+                    </tr>`;
+                tankCoinTable.innerHTML = record + tankCoinTable.innerHTML;
+                i--;
+            });
+        }
+        const data2 = await server.getRecords('cursor', 'ASC');
+        if (data2) {
+            let record = '';
+            let i = 10;
+            data2.forEach(item => {
+                record = `
+                    <tr>
+                    <th scope="row">${i}</th>
+                    <td>${item.userid}</td>
+                    <td>${item.score}</td>
+                    </tr>`;
+                cursorTable.innerHTML = record + cursorTable.innerHTML;
+                i--;
+            });
+        }
 
-    //         });
-    //     }
-    //     const data2 = await server.getRecords('cursor', true);
-    //     if (data2) {
-    //         let record = '';
-    //         let i = 1;
-    //         data2.forEach(item => {
-    //             record = `
-    //                 <tr>
-    //                 <th scope="row">${i}</th>
-    //                 <td>${item.userid}</td>
-    //                 <td>${item.score}</td>
-    //                 </tr>`;
-    //             cursorTable.innerHTML = record + cursorTable.innerHTML;
+        const data3 = await server.getRecords('discoSquares', 'ASC');
+        if (data3) {
+            let record = '';
+            let i = 10;
+            data3.forEach(item => {
+                record = `
+                    <tr>
+                    <th scope="row">${i}</th>
+                    <td>${item.userid}</td>
+                    <td>${item.score}</td>
+                    </tr>`;
+                discoTable.innerHTML = record + discoTable.innerHTML;
+                i--;
+            });
+        }
 
-    //         });
-    //     }
-
-    //     const data3 = await server.getRecords('discoSquares', true);
-    //     if (data3) {
-    //         let record = '';
-    //         let i = 1;
-    //         data3.forEach(item => {
-    //             record = `
-    //                 <tr>
-    //                 <th scope="row">${i}</th>
-    //                 <td>${item.userid}</td>
-    //                 <td>${item.score}</td>
-    //                 </tr>`;
-    //                 discoTable.innerHTML = record + discoTable.innerHTML;
-
-    //         });
-    //     }
-
-    //     const data4 = await server.getRecords('redButton', true);
-    //     if (data4) {
-    //         let record = '';
-    //         let i = 1;
-    //         data4.forEach(item => {
-    //             record = `
-    //                 <tr>
-    //                 <th scope="row">${i}</th>
-    //                 <td>${item.userid}</td>
-    //                 <td>${item.score}</td>
-    //                 </tr>`;
-    //             redButtonTable.innerHTML = record + redButtonTable.innerHTML;
-
-    //         });
-    //     }
-    // }
+        const data4 = await server.getRecords('redButton', 'ASC');
+        if (data4) {
+            let record = '';
+            let i = 10;
+            data4.forEach(item => {
+                record = `
+                    <tr>
+                    <th scope="row">${i}</th>
+                    <td>${item.userid}</td>
+                    <td>${item.score}</td>
+                    </tr>`;
+                redButtonTable.innerHTML = record + redButtonTable.innerHTML;
+                i--;
+            });
+        }
+    }
 
 
 

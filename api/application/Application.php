@@ -99,12 +99,12 @@ class Application {
         }
     }
 
-    // function getRecords($params) {
-    //     if ($params['gamename']) {
-    //         return $this->record->getRecords(
-    //             $params['gamename'], 
-    //             $params['order']
-    //         );
-    //     }
-    // }
+    function getRecords($params) {
+        if ($params['gamename']) {
+            return $this->record->getRecords(
+                $params['gamename'], 
+                $params['order']
+            );
+        }
+    }
 }

@@ -16,11 +16,11 @@ class Record {
         }
     }
 
-    // function getRecords($game, $order) {
-    //     if ($game) {
-    //         return $this->db->getRecords($game, $order);
-    //     }
-    // }
+    function getRecords($game, $order) {
+        if ($game) {
+            return $this->db->getRecords($game, $order);
+        }
+    }
 
 
 }
