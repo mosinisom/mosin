@@ -35,12 +35,12 @@
                                 <a class="dropdown-item" href="api/games/tankCoin/indexTank.html">Танчики</a>
                                 <a class="dropdown-item" href="api/games/discoSquares/index.html">ДИСКОквадраты</a>
                                 <a class="dropdown-item" href="api/games/cursor/index.html">Меткий курсор</a>
-                                <a class="dropdown-item" href="#">Бегающий круг</a>
+                                <a class="dropdown-item" href="api/games/redButton/index.html">Бегающий круг</a>
                             </div>
                         </li>
                         <li class="nav-item"><a class="nav-link" id="goToConverter"
                                 style="color: rgba(224,217,217,0.9);">Конвертер</a></li>
-                        <li class="nav-item"><a class="nav-link" href="faq.html"
+                        <li class="nav-item"><a class="nav-link" id="goToRecords"
                                 style="color: rgba(224,217,217,0.9);">Рекорды</a></li>
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
                                 data-bs-toggle="dropdown" href="#" style="color: rgba(224,217,217,0.9);">Сообщения</a>
@@ -313,6 +313,95 @@
         </div>
     </div>
     <!-- КОНЕЦ ИСХОДЯЩИХ ПИСЕМ -->
+
+    <!-- РЕКОРДЫ -->
+    <div class="d-none" id="records">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center">Рекорды</h1>
+                    <div class="row">
+                        <div class="col-12">
+
+                            <h2 class="text-center">Танк</h2>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">№</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Score</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="tankCoinTable">
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                              <h2 class="text-center">Курсор</h2>
+                              <table class="table table-striped table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">№</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Score</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id="cursorTable">
+                                    <tr>
+                                      <th scope="row">1</th>
+                                      <td>Lorem, ipsum.</td>
+                                      <td>Otto</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+
+                                <h2 class="text-center">ДИСКОквадраты</h2>
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">№</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Score</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="discoTable">
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Lorem, ipsum.</td>
+                                        <td>Otto</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+
+                                  <h2 class="text-center">Курсор</h2>
+                                  <table class="table table-striped table-hover">
+                                      <thead>
+                                        <tr>
+                                          <th scope="col">№</th>
+                                          <th scope="col">Name</th>
+                                          <th scope="col">Score</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody id="redButtonTable">
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>Lorem, ipsum.</td>
+                                          <td>Otto</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- КОНЕЦ РЕКОРДОВ -->
 
 
     <script src="public/js/authAndRegLogic.js"></script>

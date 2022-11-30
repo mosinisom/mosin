@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Press the button!</title>
+  <link rel='stylesheet'
+    href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap'>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+  <div id="movingCircle">
+
+    <div class="containerCircle">
+      <article class="game">
+        <h1>Сколько раз ты можешь нажать на меня?</h1>
+        <p class="count">0</p>
+        <button type="button">Нажми на меня!</button>
+      </article>
+
+
+
+      <article class="youlose">
+        <div>
+          <h1>Ты проиграл!</h1>
+          <p>Ты смог нажать <span class="count">0</span> раз(-а)!</p>
+          <!-- <button class="reset" type="button">Сыграть ещё раз?</button> -->
+
+          <div class="buttons">
+            <button class="restart" id="restart">Again</button>
+            <button class="exit" id="exit">Save Record</button>
+          </div>
+
+        </div>
+      </article>
+    </div>
+  </div>
+
+
+  <script src="./script.js"></script>
+
+</body>
+
+</html>

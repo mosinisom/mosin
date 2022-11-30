@@ -16,12 +16,17 @@ window.onload = function () {
     const emailTableOut = document.getElementById('emailTableOut');
     const paginationOut = document.getElementById('paginationOut');
     const goToOutcomingMails = document.getElementById('goToOutcomingMails');
+    const goToRecords = document.getElementById('goToRecords');
+    const records = document.getElementById('records');
+    // const tankCoinTable = document.getElementById('tankCoinTable');
+    // const cursorTable = document.getElementById('cursorTable');
+    // const discoTable = document.getElementById('discoTable');
+    // const redButtonTable = document.getElementById('redButtonTable');
 
     const record = localStorage.getItem('newRecord');
-
     const newRecord = JSON.parse(record);
 
-    const arrayOfParts = [auth, nav, converter, registration, sendMail, incomingMails, outgoingMails];
+    const arrayOfParts = [auth, nav, converter, registration, sendMail, incomingMails, outgoingMails, records];
 
     let currentPage = 1;
 
@@ -74,6 +79,7 @@ window.onload = function () {
         const answer = await server.convert(number, fromSystem, toSystem);
 
         document.getElementById('answer').value = answer;
+        // console.log(newRecord);
     }
     document.getElementById('sendConvert').addEventListener('click', sendConvertHandler);
 
@@ -256,6 +262,83 @@ window.onload = function () {
             });
         }
     }
+
+    // переход к таблице рекордов --------------------------------------------------------------------------------------------
+    function goToRecordsFunc() {
+        arrayOfParts.forEach(item => {
+            item.classList.add('d-none');
+        });
+        records.classList.remove('d-none');
+        nav.classList.remove('d-none');
+        // getRecordsHandler();
+    }
+    goToRecords.addEventListener('click', goToRecordsFunc);
+
+    // // получение всех таблиц рекордов --------------------------------------------------------------------------------------------
+    // async function getRecordsHandler() {
+    //     const data = await server.getRecords('tankCoin', false);
+    //     if (data) {
+    //         let record = '';
+    //         let i = 1;
+    //         data.forEach(item => {
+    //             record = `
+    //                 <tr>
+    //                 <th scope="row">${i}</th>
+    //                 <td>${item.userid}</td>
+    //                 <td>${item.score}</td>
+    //                 </tr>`;
+    //             tankCoinTable.innerHTML = record + tankCoinTable.innerHTML;
+
+    //         });
+    //     }
+    //     const data2 = await server.getRecords('cursor', true);
+    //     if (data2) {
+    //         let record = '';
+    //         let i = 1;
+    //         data2.forEach(item => {
+    //             record = `
+    //                 <tr>
+    //                 <th scope="row">${i}</th>
+    //                 <td>${item.userid}</td>
+    //                 <td>${item.score}</td>
+    //                 </tr>`;
+    //             cursorTable.innerHTML = record + cursorTable.innerHTML;
+
+    //         });
+    //     }
+
+    //     const data3 = await server.getRecords('discoSquares', true);
+    //     if (data3) {
+    //         let record = '';
+    //         let i = 1;
+    //         data3.forEach(item => {
+    //             record = `
+    //                 <tr>
+    //                 <th scope="row">${i}</th>
+    //                 <td>${item.userid}</td>
+    //                 <td>${item.score}</td>
+    //                 </tr>`;
+    //                 discoTable.innerHTML = record + discoTable.innerHTML;
+
+    //         });
+    //     }
+
+    //     const data4 = await server.getRecords('redButton', true);
+    //     if (data4) {
+    //         let record = '';
+    //         let i = 1;
+    //         data4.forEach(item => {
+    //             record = `
+    //                 <tr>
+    //                 <th scope="row">${i}</th>
+    //                 <td>${item.userid}</td>
+    //                 <td>${item.score}</td>
+    //                 </tr>`;
+    //             redButtonTable.innerHTML = record + redButtonTable.innerHTML;
+
+    //         });
+    //     }
+    // }
 
 
 

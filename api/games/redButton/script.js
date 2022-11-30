@@ -1,10 +1,16 @@
 const container = document.querySelector('.containerCircle');
 const gameButton = document.querySelector('.game button');
-const reset = document.querySelector('.reset');
+// const reset = document.querySelector('.reset');
 let count = 0;
 let series = 0;
 let toMove = true;
 let jumpIn = newJumpIn();
+
+const exitBtn = document.querySelector('.exit');
+const restartBtn = document.querySelector('.restart');
+
+const token = localStorage.getItem('token');
+let bestScore = 0;
 
 const directions = [
     'reset',
@@ -24,11 +30,16 @@ document.body.addEventListener('click', e => {
             continueGame();
         } else {
             container.classList.add('gameover');
+            saveScore();
+            if (count > bestScore) {
+                bestScore = count;
+            }
         }
     }
 });
 
-reset.addEventListener('click', resetGame);
+// reset.addEventListener('click', resetGame);
+restartBtn.addEventListener('click', resetGame);
 
 function continueGame() {
     toMove = setTimeout(() => {
@@ -96,4 +107,23 @@ function resetGame() {
     setTimeout(() => {
         container.classList.remove('gameover');
     }, 100);
+}
+
+exitBtn.addEventListener('click', exit);
+
+function exit() {
+    if (count > bestScore) {
+        bestScore = count;
+    }
+    saveScore();
+    goBack();
+}
+
+function saveScore() {
+    const data = {'game': 'redButton', 'score': bestScore, 'token': token};
+    localStorage.setItem('newRecord', JSON.stringify(data));
+}
+
+function goBack() {
+    window.location.href = "../../../index.html";
 }

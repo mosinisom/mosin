@@ -45,6 +45,24 @@ class DB {
         return $result;
     }
 
+    // private function replaceUserIdToName($array) {
+    //     $result = array();
+    //     foreach ($array as $key => $value) {
+    //         $result[$key] = $value;
+    //         if ($key == 'userid') {
+    //             $result[$key] = $this->getNameById($value);
+    //         }
+    //     }
+    //     return $result;
+    // }
+
+    // private function getNameById($id) {
+    //     $query = 'SELECT name FROM users WHERE id = ' . id;
+    //     $stmt = $this->db->query($query);
+    //     $result = $stmt->fetch(PDO::FETCH_OBJ);
+    //     return $result->name;
+    // }
+
     private function getEmailById($id) {
         $query = 'SELECT login FROM users WHERE id = ' . $id;
         $stmt = $this->db->query($query);
@@ -122,6 +140,12 @@ class DB {
         $query = 'SELECT * FROM mails WHERE idfromuser=(SELECT id FROM users WHERE token="' . $token . '") LIMIT 10 OFFSET ' . ($page - 1) * 10;
         $array = $this->getArray($query);
         return array_map(array($this, 'replaceIdToEmail'), $array);
+    }
+
+    public function getRecords($gamename, $order) {
+        $query = 'SELECT * FROM records WHERE gameid=(SELECT id FROM games WHERE name="' . $gamename . '") ORDER BY score ' . ($order ? 'ASC' : 'DESC') . ' LIMIT 10';
+        $array = $this->getArray($query);
+        return array_map(array($this, 'replaceUserIdToName'), $array);
     }
 
 

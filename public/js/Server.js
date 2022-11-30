@@ -119,4 +119,15 @@ class Server {
         return 'error';
     }
 
+    // async getRecords(gamename, order) {
+    //     if (gamename) {
+    //         return await this.send({ 
+    //             method: 'getRecords', 
+    //             gamename,
+    //             order,
+    //         });
+    //     }
+    //     return 'records error'; 
+    // }
+
 }
