@@ -22,6 +22,12 @@ class Mail {
         }
     }
 
+    function readMails($token) {
+        if ($token) {
+            return $this->db->readMails($token);
+        }
+    }
+
     
 
 

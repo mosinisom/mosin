@@ -114,13 +114,12 @@ class DB {
     }
 
     public function sendMail($token, $email, $theme, $text) {
-        $query = 'INSERT INTO mails (idfromuser, idtouser, theme, content) VALUES ((SELECT id FROM users WHERE token="' . $token . '"), (SELECT id FROM users WHERE login="' . $email . '"), "' . $theme . '", "' . $text . '")';
+        $query = 'INSERT INTO mails (idfromuser, idtouser, theme, content, isread) VALUES ((SELECT id FROM users WHERE token="' . $token . '"), (SELECT id FROM users WHERE login="' . $email . '"), "' . $theme . '", "' . $text . '", FALSE)';
         $this->db->query($query);
         return true;
     }
 
     public function addGameRecord($game, $token, $score){
-        // $query = 'INSERT INTO records (gameid, userid, score) VALUES ((SELECT id FROM games WHERE name="' . $game . '"), (SELECT id FROM users WHERE token="' . $token . '"),' . $score . ')';
         $query = "INSERT INTO `records` (`id`, `gameid`, `userid`, `score`, `date`) VALUES (NULL, (SELECT id FROM games WHERE name='" . $game . "'), (SELECT id FROM users WHERE token='" . $token . "'), '" . $score . "', NOW())";
         $this->db->query($query);
         return true;
@@ -150,12 +149,33 @@ class DB {
         if ($order == 'DESC') {
             $query = 'SELECT * FROM records WHERE gameid=(SELECT id FROM games WHERE name="' . $gamename . '") ORDER BY score DESC LIMIT 10';
         }
-        // $query = "SELECT * FROM `records` WHERE `score` = 1000";
 
         $array = $this->getArray($query);
         return array_map(array($this, 'replaceUserIdToName'), $array);
     }
 
+    public function readMails($token) {
+        $query = 'UPDATE mails SET isread=TRUE WHERE idtouser=(SELECT id FROM users WHERE token="' . $token . '")';
+        return $this->db->query($query);
+    }
+
+    function getGamesList() {
+        $query = 'SELECT * FROM games';
+        return $this->getArray($query);
+    }
+
+    function changeGameStatus($token, $game) {
+        $query = 'SELECT * FROM users WHERE token="' . $token . '" AND admin=TRUE';
+        $admin = $this->db->query($query);
+        if($admin->rowCount() == 1){
+            $query = 'UPDATE games SET isworking=NOT isworking WHERE name="' . $game . '"';
+            $this->db->query($query);
+        }
+    }
+
+
+    // $query = 'SELECT admin FROM users WHERE token="' . $token . '"';
+    
 
 
 

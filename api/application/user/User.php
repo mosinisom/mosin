@@ -11,13 +11,20 @@ class User {
             $this->db->updateToken($user->id, $token);
             return array(
                 'name' => $user->name,
-                'token' => $token
+                'token' => $token,
+                'admin' => $user->admin
             );
         }
     }
 
     function getUser($token) {
-        return !!$this->db->getUserByToken($token);
+        $user = $this->db->getUserByToken($token);
+        return array(
+            'name' => $user->name,
+            'token' => $token,
+            'admin' => $user->admin,
+            'checked' => !!$this->db->getUserByToken($token)
+        );
     }
 
     function logout($token) {

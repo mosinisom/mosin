@@ -99,11 +99,32 @@ class Application {
         }
     }
 
+    function readMails($params) {
+        if ($params['token']) {
+            return $this->mail->readMails(
+                $params['token'] 
+            );
+        }
+    }
+
     function getRecords($params) {
         if ($params['gamename']) {
             return $this->record->getRecords(
                 $params['gamename'], 
                 $params['order']
+            );
+        }
+    }
+
+    function getGamesList($params) {
+        return $this->record->getGamesList();
+    }
+
+    function changeGameStatus($params) {
+        if ($params['token'] && $params['game']) {
+            return $this->record->changeGameStatus(
+                $params['token'], 
+                $params['game']
             );
         }
     }

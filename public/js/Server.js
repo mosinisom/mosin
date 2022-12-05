@@ -77,10 +77,11 @@ class Server {
 
     async checkToken(token) {
         if (token) {
-            return await this.send({ 
+            const data = await this.send({ 
                 method: 'checkToken', 
                 token 
             });
+            return data;
         }
         return null;
     }
@@ -119,6 +120,13 @@ class Server {
         return 'error';
     }
 
+    async readMails(){
+        return await this.send({ 
+            method: 'readMails',
+            token: this.token
+    });
+    }
+
     async getRecords(gamename, order) {
         if (gamename) {
             return await this.send({ 
@@ -128,6 +136,24 @@ class Server {
             });
         }
         return 'records error'; 
+    }
+
+    async getGamesList() {
+        return await this.send({ 
+            method: 'getGamesList', 
+        });
+    }
+
+    async changeGameStatus(game){
+        console.log(this.token);
+        if (game) {
+            return await this.send({ 
+                method: 'changeGameStatus', 
+                token: this.token,
+                game
+            });
+        }
+        return 'error';
     }
 
 }

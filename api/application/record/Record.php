@@ -22,5 +22,15 @@ class Record {
         }
     }
 
+    function getGamesList() {
+        return $this->db->getGamesList();
+    }
+
+    function changeGameStatus($token, $game) {
+        if ($token && $game) {
+            return $this->db->changeGameStatus($token, $game);
+        }
+    }
+
 
 }

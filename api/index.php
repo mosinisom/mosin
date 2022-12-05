@@ -19,7 +19,10 @@ function router($params) {
             case 'addGameRecord': return $app->addGameRecord($params);
             case 'getMails' : return $app->getMails($params);
             case 'getSentMails' : return $app->getSentMails($params);  
-            case 'getRecords' : return $app->getRecords($params);          
+            case 'getRecords' : return $app->getRecords($params); 
+            case 'readMails' : return $app->readMails($params);   
+            case 'getGamesList' : return $app->getGamesList($params); 
+            case 'changeGameStatus' : return $app->changeGameStatus($params);     
             //...
         }
     }
