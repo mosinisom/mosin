@@ -17,3 +17,8 @@ body {
 li a {
     cursor: pointer;
 }
+
+/* make text bold to unread class */
+.unread {
+    font-weight: bold;
+}

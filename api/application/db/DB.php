@@ -107,7 +107,7 @@ class DB {
         if ($user) {
             return false;
         }
-        $query = 'INSERT INTO users (login, password, name, token) VALUES ("' . $login . '", "' . $password . '", "' . $name . '", "")';
+        $query = 'INSERT INTO users (login, password, name, token, admin) VALUES ("' . $login . '", "' . $password . '", "' . $name . '", "", FALSE)';
 
         $this->db->query($query);
         return true;
@@ -172,13 +172,6 @@ class DB {
             $this->db->query($query);
         }
     }
-
-
-    // $query = 'SELECT admin FROM users WHERE token="' . $token . '"';
-    
-
-
-
 
     
 

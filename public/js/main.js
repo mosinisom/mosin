@@ -238,7 +238,7 @@ window.onload = function () {
     );
 
     // получение писем --------------------------------------------------------------------------------------------
-    setInterval(() => { getMailsHandler(); }, 1500);
+    // setInterval(() => { getMailsHandler(); }, 1500);
 
     async function getMailsHandler() {
         newMailNotification();
@@ -247,13 +247,15 @@ window.onload = function () {
             let mail = '';
             emailTable.innerHTML = '';
             data.forEach(item => {
+                let isread = '';
                 if (item.isread == false) {
                     newMails = true;
+                    isread = 'style="font-weight: bold;"';
                 }
                 mail = `
                 <tr>
                 <th scope="row">🙾</th>
-                <td class="send-mail" data-user="${item.idfromuser}">${item.idfromuser}</td>
+                <td class="send-mail" ${isread} data-user="${item.idfromuser}">${item.idfromuser}</td>
                 <td>${item.theme}</td>
                 <td>${item.content}</td>
                 </tr>`;
@@ -329,6 +331,7 @@ window.onload = function () {
         if (data) {
             let record = '';
             let i = 10;
+            tankCoinTable.innerHTML = '';
             data.forEach(item => {
                 record = `
                     <tr>
@@ -344,6 +347,7 @@ window.onload = function () {
         if (data2) {
             let record = '';
             let i = 10;
+            cursorTable.innerHTML = '';
             data2.forEach(item => {
                 record = `
                     <tr>
@@ -360,6 +364,7 @@ window.onload = function () {
         if (data3) {
             let record = '';
             let i = 10;
+            discoTable.innerHTML = '';
             data3.forEach(item => {
                 record = `
                     <tr>
@@ -376,6 +381,7 @@ window.onload = function () {
         if (data4) {
             let record = '';
             let i = 10;
+            redButtonTable.innerHTML = '';
             data4.forEach(item => {
                 record = `
                     <tr>
